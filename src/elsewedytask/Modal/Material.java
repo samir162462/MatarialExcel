@@ -22,8 +22,6 @@ public class Material {
         this.quantity = quantity;
     }
 
-    
-    
     public int getId() {
         return id;
     }
@@ -47,6 +45,12 @@ public class Material {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+    @Override
+    public String toString() {
+        return "Material{" + "id=" + id + ", name=" + name + ", quantity=" + quantity + '}';
+    }
+    
     
     
     

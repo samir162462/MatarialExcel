@@ -16,6 +16,7 @@ public class MaterialSet {
     String listName ; 
     ArrayList<Material> materialsSet ;
 
+    
     public MaterialSet(String listName, ArrayList<Material> materialsSet) {
         this.listName = listName;
         this.materialsSet = materialsSet;
@@ -37,7 +38,16 @@ public class MaterialSet {
         this.materialsSet = materialsSet;
     }
     
-    
+    public int getTotalQuantity()
+    {
+        return this.materialsSet.stream().mapToInt(Material::getQuantity).sum();
+    }
+
+    @Override
+    public String toString() {
+        return "MaterialSet{" + "listName=" + listName + ", materialsSet=" + materialsSet + '}';
+    }
+
     
     
     

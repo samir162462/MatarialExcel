@@ -5,27 +5,12 @@
  */
 package elsewedytask.View;
 
-import elsewedytask.Controller.ImportExcel;
+import elsewedytask.Controller.ImportFileController;
 import elsewedytask.Controller.MaterialSetController;
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
-import javax.swing.JFileChooser;
-import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.table.DefaultTableModel;
-import static org.apache.commons.math3.fitting.leastsquares.LeastSquaresFactory.model;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -65,19 +50,19 @@ public class MainView extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jListM1 = new javax.swing.JList<>();
-        jButton4 = new javax.swing.JButton();
+        jButtonRemove1 = new javax.swing.JButton();
         jCheckBoxMainSet = new javax.swing.JCheckBox();
         jPanelSet3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jListM3 = new javax.swing.JList<>();
-        jButton8 = new javax.swing.JButton();
+        jButtonRemove3 = new javax.swing.JButton();
         jCheckBoxSet3 = new javax.swing.JCheckBox();
         jPanelSet6 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
         jListM2 = new javax.swing.JList<>();
-        jButton14 = new javax.swing.JButton();
+        jButtonRemove2 = new javax.swing.JButton();
         jCheckBoxSet2 = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -135,8 +120,13 @@ public class MainView extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(jListM1);
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/elsewedytask/Assets/Remove_20px.png"))); // NOI18N
-        jButton4.setText("Remove");
+        jButtonRemove1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/elsewedytask/Assets/Remove_20px.png"))); // NOI18N
+        jButtonRemove1.setText("Remove");
+        jButtonRemove1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemove1ActionPerformed(evt);
+            }
+        });
 
         jCheckBoxMainSet.setSelected(true);
         jCheckBoxMainSet.setText("In Selection");
@@ -152,7 +142,7 @@ public class MainView extends javax.swing.JFrame {
                         .addComponent(jScrollPane3))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelSet1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton4)
+                        .addComponent(jButtonRemove1)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelSet1Layout.createSequentialGroup()
                         .addGap(127, 127, 127)
@@ -171,7 +161,7 @@ public class MainView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
+                .addComponent(jButtonRemove1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -187,8 +177,13 @@ public class MainView extends javax.swing.JFrame {
         });
         jScrollPane5.setViewportView(jListM3);
 
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/elsewedytask/Assets/Remove_20px.png"))); // NOI18N
-        jButton8.setText("Remove");
+        jButtonRemove3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/elsewedytask/Assets/Remove_20px.png"))); // NOI18N
+        jButtonRemove3.setText("Remove");
+        jButtonRemove3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemove3ActionPerformed(evt);
+            }
+        });
 
         jCheckBoxSet3.setText("In Selection");
 
@@ -203,7 +198,7 @@ public class MainView extends javax.swing.JFrame {
                         .addComponent(jScrollPane5))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelSet3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton8)
+                        .addComponent(jButtonRemove3)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelSet3Layout.createSequentialGroup()
                         .addGap(127, 127, 127)
@@ -222,7 +217,7 @@ public class MainView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton8)
+                .addComponent(jButtonRemove3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -238,8 +233,13 @@ public class MainView extends javax.swing.JFrame {
         });
         jScrollPane8.setViewportView(jListM2);
 
-        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/elsewedytask/Assets/Remove_20px.png"))); // NOI18N
-        jButton14.setText("Remove");
+        jButtonRemove2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/elsewedytask/Assets/Remove_20px.png"))); // NOI18N
+        jButtonRemove2.setText("Remove");
+        jButtonRemove2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemove2ActionPerformed(evt);
+            }
+        });
 
         jCheckBoxSet2.setText("In Selection");
 
@@ -254,7 +254,7 @@ public class MainView extends javax.swing.JFrame {
                         .addComponent(jScrollPane8))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelSet6Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton14)
+                        .addComponent(jButtonRemove2)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelSet6Layout.createSequentialGroup()
                         .addGap(127, 127, 127)
@@ -273,7 +273,7 @@ public class MainView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton14)
+                .addComponent(jButtonRemove2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -457,22 +457,40 @@ public class MainView extends javax.swing.JFrame {
     public void setjListM3(JList<String> jListM3) {
         this.jListM3 = jListM3;
     }
-    
-    
+
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        ImportExcel importExcel = new ImportExcel(this);
+        ImportFileController importExcel = new ImportFileController(this);
         importExcel.getExcelFromFile();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        MaterialSetController materialSetController = new MaterialSetController(this);
-        materialSetController.handleSelectedRowToSet();
+        MaterialSetController materialSetController = MaterialSetController.getInstance(); //Singleton
+        materialSetController.handleSelectedRowToSet(this);
+        System.out.println(materialSetController.getArrayListMaterialSets());
+        System.out.println(materialSetController.getArrayListMaterialSets().get(0).getTotalQuantity());
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButtonRemove1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemove1ActionPerformed
+        // TODO add your handling code here:
+        MaterialSetController controller = MaterialSetController.getInstance();
+        controller.removeElmentFromJlistModal(jListM1);
+    }//GEN-LAST:event_jButtonRemove1ActionPerformed
+
+    private void jButtonRemove2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemove2ActionPerformed
+        // TODO add your handling code here:
+        MaterialSetController controller = MaterialSetController.getInstance();
+        controller.removeElmentFromJlistModal(jListM2);
+    }//GEN-LAST:event_jButtonRemove2ActionPerformed
+
+    private void jButtonRemove3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemove3ActionPerformed
+        // TODO add your handling code here:
+        MaterialSetController controller = MaterialSetController.getInstance();
+        controller.removeElmentFromJlistModal(jListM3);
+    }//GEN-LAST:event_jButtonRemove3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -482,11 +500,11 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButtonRemove1;
+    private javax.swing.JButton jButtonRemove2;
+    private javax.swing.JButton jButtonRemove3;
     private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JCheckBox jCheckBoxMainSet;

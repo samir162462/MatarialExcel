@@ -18,7 +18,6 @@ import javax.swing.JTable;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import org.apache.poi.ss.usermodel.DataFormatter;
-import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -27,7 +26,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *
  * @author SAM
  */
-public class ImportExcel {
+public class ImportFileController {
 
     private ArrayList<Material> materialsArrayList;
     private final MainView mainView;
@@ -36,7 +35,7 @@ public class ImportExcel {
         return materialsArrayList;
     }
 
-    public ImportExcel(MainView mainView) {
+    public ImportFileController(MainView mainView) {
         this.mainView = mainView;
     }
 
@@ -69,7 +68,7 @@ public class ImportExcel {
                     String excelName = fmt.formatCellValue(excelRow.getCell(1)) ;
                     int excelQuantity = Integer.valueOf(fmt.formatCellValue(excelRow.getCell(2))) ;
                     Material material = new Material( excelId, excelName,excelQuantity );
-                    if (handleIsRedundant(material)) {
+                    if (!handleIsRedundant(material)) {
                      this.materialsArrayList.add(material);
 
                     }
@@ -121,11 +120,11 @@ public class ImportExcel {
                 total = mat.getQuantity() + material.getQuantity();
                 material.setQuantity(total);
                 materialsArrayList.set(i,material);
-                return false;
+                return true;
             } 
         }
         
-        return true;
+        return false;
     }
 
 }
