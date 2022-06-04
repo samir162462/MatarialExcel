@@ -28,6 +28,8 @@ public class MainView extends javax.swing.JFrame {
         JtableExcelFile.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         jPanelSet2.hide();
         jPanelSet3.hide();
+        jLabel14.show(false);
+        jLabel15.show(false);
     }
 
     /**
@@ -41,6 +43,8 @@ public class MainView extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         JtableExcelFile = new javax.swing.JTable();
@@ -90,6 +94,12 @@ public class MainView extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/elsewedytask/Assets/Elswedy_logo.png"))); // NOI18N
         jPanel1.add(jLabel1);
+
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/elsewedytask/Assets/Spin-1s-48px.gif"))); // NOI18N
+        jPanel1.add(jLabel14);
+
+        jLabel15.setText("Loading...");
+        jPanel1.add(jLabel15);
 
         jPanel2.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -682,6 +692,8 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
