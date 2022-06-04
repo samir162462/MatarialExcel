@@ -9,6 +9,7 @@ import elsewedytask.Modal.Material;
 import elsewedytask.Modal.MaterialSet;
 import elsewedytask.View.MainView;
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -50,14 +51,19 @@ public class MaterialSetController {
             Material material = new Material(valueId, valueName, valueQuantity);
             if (mainView.getjCheckBoxMainSet().isSelected()) {
                 setElmentToJlist(mainView.getjListM1(), material, 0);
+                mainView.getjLabelSum1().setText(arrayListMaterialSets.get(0).getTotalQuantity() + "");
+                arrayListMaterialSets.get(0).setListName(mainView.getjTextFieldS1().getText());
             }
             if (mainView.getjCheckBoxSet2().isSelected()) {
                 setElmentToJlist(mainView.getjListM2(), material, 1);
+                mainView.getjLabelSum2().setText(arrayListMaterialSets.get(1).getTotalQuantity() + "");
+                arrayListMaterialSets.get(1).setListName(mainView.getjTextFieldS2().getText());
             }
             if (mainView.getjCheckBoxSet3().isSelected()) {
                 setElmentToJlist(mainView.getjListM3(), material, 2);
+                mainView.getjLabelSum3().setText(arrayListMaterialSets.get(2).getTotalQuantity() + "");
+                arrayListMaterialSets.get(2).setListName(mainView.getjTextFields3().getText());
             }
-            System.out.println("getjCheckBoxSet3().isSelected()" + mainView.getjCheckBoxSet3().isSelected());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Please Select Row First! ");
         }
@@ -70,7 +76,6 @@ public class MaterialSetController {
             if (handleIsRedundant(jList, elment)) {
                 listModel.addElement(elment);  // add -> to jList 
                 arrayListMaterialSets.get(jSetIndex).getMaterialsSet().add(material);
-
             }
             jList.setModel(listModel);
             return jList;
@@ -85,23 +90,23 @@ public class MaterialSetController {
         }
     }
 
-    public JList<String> removeElmentFromJlistModal(JList jList) {
-
+    public JList<String> removeElmentFromJlistModal(JList jList, int jSetIndex) {
         DefaultListModel listModel = (DefaultListModel) jList.getModel();
-        removeSelectedFromJlist(jList, listModel);
+        int index = jList.getSelectedIndex();
+        if (index >= 0) { //Remove only if a particular item is selected
+            listModel.removeElementAt(index);
+            removeElmentFromArrayMaterialList(jSetIndex, index);
+        }
         jList.setModel(listModel);
         return jList;
 
     }
 
-    private DefaultListModel removeSelectedFromJlist(JList jlist, DefaultListModel model) {// remove jlist elment
-        int index = jlist.getSelectedIndex();
-        if (index >= 0) { //Remove only if a particular item is selected
-            model.removeElementAt(index);
-        }
-        return model;
+    private void removeElmentFromArrayMaterialList(int jSetIndex, int matarialIndex) {
+        arrayListMaterialSets.get(jSetIndex).getMaterialsSet().remove(matarialIndex);
     }
 
+    // --- handleIsRedundant in JList -------- 
     private boolean handleIsRedundant(JList jlist, String element) {
         for (int i = 0; i < jlist.getModel().getSize(); i++) {
             String ele = (String) jlist.getModel().getElementAt(i);
@@ -114,6 +119,14 @@ public class MaterialSetController {
 
     public ArrayList<MaterialSet> getArrayListMaterialSets() {
         return arrayListMaterialSets;
+    }
+
+    /// ---------- DB ---------
+    public void saveToDBMaterialSet() {
+        arrayListMaterialSets.forEach((materialSet) -> {
+            DatabaseController.addMaterialSet(materialSet);
+        });
+
     }
 
 }

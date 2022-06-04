@@ -26,7 +26,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *
  * @author SAM
  */
-public class ImportFileController {
+public class ImportFileController implements ExcelImport{
 
     private ArrayList<Material> materialsArrayList;
     private final MainView mainView;
@@ -39,6 +39,7 @@ public class ImportFileController {
         this.mainView = mainView;
     }
 
+    @Override
     public void getExcelFromFile() {
         File excelFile;
         FileInputStream excelFIS = null;
@@ -96,7 +97,8 @@ public class ImportFileController {
         }
     }
 
-    private void handleExcelFileToJtable() {
+    @Override
+    public void handleExcelFileToJtable() {
         JTable jTableExcel = this.mainView.getJtableExcelFile();
         String col[] = {"ID","Name","Quantity"};
         DefaultTableModel tableModel = new DefaultTableModel(col,0);
